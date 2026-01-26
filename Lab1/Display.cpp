@@ -4,8 +4,8 @@
 Display::Display()
 {
 	_window = nullptr; //initialise to generate null access violation for debugging. 
-	_screenWidth = 1000;
-	_screenHeight = 1000; 
+	_screenWidth = 3840;
+	_screenHeight = 3840; 
 }
 
 Display::~Display()

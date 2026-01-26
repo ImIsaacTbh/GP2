@@ -58,48 +58,6 @@ void MainGame::drawGame()
 
 	glEnableClientState(GL_COLOR_ARRAY);
 
-	double interval = 0.01;
-	for (double i = 1; i < 361; i = i + interval)
-	{
-		glBegin(GL_TRIANGLES);
-		glColor3f(gimmenumber(), gimmenumber(), gimmenumber());
-		double x, y;
-		x = (0.5 * sin(i));
-		y = (0.5 * cos(i));
-		double x2, y2;
-		x2 = (0.5 * sin(i + interval));
-		y2 = (0.5 * cos(i + interval));
-		glVertex2f(0, 0);
-		glVertex2f(x, y);
-		glVertex2f(x2, y2);
-		glEnd();
-	}
-
-	for (double i = 1; i < 360; i = i + interval)
-	{
-		glBegin(GL_TRIANGLES);
-		glColor3f(0.4f, 0.4f, 0.4f);
-		double x, y;
-		x = (0.1 * sin(i));
-		y = (0.1 * cos(i));
-		double x2, y2;
-		x2 = (0.1 * sin(i + interval));
-		y2 = (0.1 * cos(i + interval));
-		glVertex2f(0, 0);
-		glVertex2f(x, y);
-		glVertex2f(x2, y2);
-		glEnd();
-	}
-
-	glColor3f(1, 1, 0);
-	glBegin(GL_QUADS);
-	glVertex2f(0.5, 0.5);
-	glVertex2f(0.5, 1);
-	glVertex2f(1, 1);
-	glVertex2f(1, 0.5);
-	glEnd();
-
-
 	const char* vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
 		"layout (location = 1) in vec3 aColor;\n"
@@ -154,6 +112,69 @@ void MainGame::drawGame()
 	}
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
+
+	double interval = 0.01;
+	for (double i = 1; i < 361; i = i + interval)
+	{
+		double x, y;
+		x = (0.5 * sin(i));
+		y = (0.5 * cos(i));
+		double x2, y2;
+		x2 = (0.5 * sin(i + interval));
+		y2 = (0.5 * cos(i + interval));
+		float vertices[] = {
+		0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+		x, y, 0.0f, 0.0f, 1.0f, 0.0f,
+		x2, y2, 0.0f, 0.0f, 0.0f, 1.0f,
+		};
+
+		unsigned int VBO, VAO;
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+		// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		// position attribute
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+		// color attribute
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
+
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glUseProgram(shaderProgram);
+		glDeleteVertexArrays(1, &VAO);
+		glDeleteBuffers(1, &VBO);
+		glDeleteProgram(shaderProgram);
+	}
+
+	for (double i = 1; i < 360; i = i + interval)
+	{
+		glBegin(GL_TRIANGLES);
+		glColor3f(0.4f, 0.4f, 0.4f);
+		double x, y;
+		x = (0.1 * sin(i));
+		y = (0.1 * cos(i));
+		double x2, y2;
+		x2 = (0.1 * sin(i + interval));
+		y2 = (0.1 * cos(i + interval));
+		glVertex2f(0, 0);
+		glVertex2f(x, y);
+		glVertex2f(x2, y2);
+		glEnd();
+	}
+
+	glColor3f(1, 1, 0);
+	glBegin(GL_QUADS);
+	glVertex2f(0.5, 0.5);
+	glVertex2f(0.5, 1);
+	glVertex2f(1, 1);
+	glVertex2f(1, 0.5);
+	glEnd();
 	
 	float vertices[] = {
 		-1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
@@ -180,6 +201,9 @@ void MainGame::drawGame()
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glUseProgram(shaderProgram);
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteProgram(shaderProgram);
 
 	//glVertex2f(-0.5, -0.5);
 	//glVertex2f(0.5, -0.5);
