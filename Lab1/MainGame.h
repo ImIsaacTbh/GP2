@@ -20,7 +20,10 @@ private:
 	void processInput();
 	void gameLoop();
 	void drawGame();
+	void compShaders();
 
+	double f1, f2, f3;
+	unsigned int shaderProgram;
 	Display _gameDisplay;
 	GameState _gameState;
 

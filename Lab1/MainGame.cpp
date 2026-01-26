@@ -12,52 +12,27 @@ MainGame::~MainGame()
 	_gameState = GameState::PLAY;
 }
 
-void MainGame::run()
-{
-	srand(time(0));
-	initSystems();
-	gameLoop();
-}
-
-void MainGame::initSystems()
-{
-	_gameDisplay.initDisplay();
-}
-
-void MainGame::gameLoop()
-{
-	while (_gameState != GameState::EXIT)
-	{
-		processInput();
-		drawGame();
-	}
-}
-
-void MainGame::processInput()
-{
-	SDL_Event aaaa;
-	while (SDL_PollEvent(&aaaa))
-	{
-		switch (aaaa.type)
-		{
-		case SDL_QUIT:
-			_gameState = GameState::EXIT;
-		}
-	}
-}
-
 double gimmenumber()
 {
 	return static_cast<double>(rand()) / RAND_MAX;
 }
 
-void MainGame::drawGame()
+void MainGame::run()
 {
-	glClearDepth(1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
+	srand(time(NULL));
+	initSystems();
+	f1 = gimmenumber();
+	f2 = gimmenumber();
+	f3 = gimmenumber();
+	f1 *= 1.3;
+	f2 *= 1.3;
+	f3 *= 1.3;
+	compShaders();
+	gameLoop();
+}
 
-	glEnableClientState(GL_COLOR_ARRAY);
-
+void MainGame::compShaders()
+{
 	const char* vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
 		"layout (location = 1) in vec3 aColor;\n"
@@ -100,7 +75,7 @@ void MainGame::drawGame()
 		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 	// link shaders
-	unsigned int shaderProgram = glCreateProgram();
+	shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
@@ -112,6 +87,41 @@ void MainGame::drawGame()
 	}
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
+}
+
+void MainGame::initSystems()
+{
+	_gameDisplay.initDisplay();
+}
+
+void MainGame::gameLoop()
+{
+	while (_gameState != GameState::EXIT)
+	{
+		processInput();
+		drawGame();
+	}
+}
+
+void MainGame::processInput()
+{
+	SDL_Event aaaa;
+	while (SDL_PollEvent(&aaaa))
+	{
+		switch (aaaa.type)
+		{
+		case SDL_QUIT:
+			_gameState = GameState::EXIT;
+		}
+	}
+}
+
+void MainGame::drawGame()
+{
+	glClearDepth(1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
+
+	glEnableClientState(GL_COLOR_ARRAY);
 
 	double interval = 0.01;
 	for (double i = 1; i < 361; i = i + interval)
@@ -123,9 +133,9 @@ void MainGame::drawGame()
 		x2 = (0.5 * sin(i + interval));
 		y2 = (0.5 * cos(i + interval));
 		float vertices[] = {
-		0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-		x, y, 0.0f, 0.0f, 1.0f, 0.0f,
-		x2, y2, 0.0f, 0.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 0.0f, f1, f2, f3,
+		x, y, 0.0f, f3, f1, f2,
+		x2, y2, 0.0f, f2, f3, f1,
 		};
 
 		unsigned int VBO, VAO;
@@ -151,30 +161,6 @@ void MainGame::drawGame()
 		glDeleteBuffers(1, &VBO);
 		glDeleteProgram(shaderProgram);
 	}
-
-	for (double i = 1; i < 360; i = i + interval)
-	{
-		glBegin(GL_TRIANGLES);
-		glColor3f(0.4f, 0.4f, 0.4f);
-		double x, y;
-		x = (0.1 * sin(i));
-		y = (0.1 * cos(i));
-		double x2, y2;
-		x2 = (0.1 * sin(i + interval));
-		y2 = (0.1 * cos(i + interval));
-		glVertex2f(0, 0);
-		glVertex2f(x, y);
-		glVertex2f(x2, y2);
-		glEnd();
-	}
-
-	glColor3f(1, 1, 0);
-	glBegin(GL_QUADS);
-	glVertex2f(0.5, 0.5);
-	glVertex2f(0.5, 1);
-	glVertex2f(1, 1);
-	glVertex2f(1, 0.5);
-	glEnd();
 	
 	float vertices[] = {
 		-1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
@@ -204,10 +190,6 @@ void MainGame::drawGame()
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteProgram(shaderProgram);
-
-	//glVertex2f(-0.5, -0.5);
-	//glVertex2f(0.5, -0.5);
-	//glVertex2f(0, 0.5);
 
 	_gameDisplay.swapBuffer();
 }

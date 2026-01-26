@@ -4,8 +4,8 @@
 Display::Display()
 {
 	_window = nullptr; //initialise to generate null access violation for debugging. 
-	_screenWidth = 3840;
-	_screenHeight = 3840; 
+	_screenWidth = 800;
+	_screenHeight = 800; 
 }
 
 Display::~Display()
@@ -38,5 +38,5 @@ void Display::initDisplay()
 	if (_window == nullptr) returnError("Failed to create window.");
 	if (context == nullptr) returnError("Failed to create openGL context.");
 	if (error != GLEW_OK) returnError("Failed to initalise GLEW.");
-	glClearColor(0.4f, 0.4f, 0.4f, 1.0f);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 }
