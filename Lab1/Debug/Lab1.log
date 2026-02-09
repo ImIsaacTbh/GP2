@@ -1,30 +1,10 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   MainGame.cpp
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(22,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(136,21): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(136,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(136,25): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(136,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(136,29): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(136,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,3): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,3): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,6): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,6): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,15): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,19): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,23): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(137,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,3): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,3): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,7): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,7): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,17): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,21): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,25): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(138,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(29,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(51,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(52,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(54,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(55,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(57,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(58,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Lab1.vcxproj -> C:\Users\aster\source\repos\GP2-Lab1\Debug\Labs.exe

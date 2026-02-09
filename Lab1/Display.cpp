@@ -25,6 +25,13 @@ void Display::swapBuffer()
 	SDL_GL_SwapWindow(_window);
 }
 
+void Display::clearDisplay()
+{
+	glClearDepth(1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
+
+}
+
 void Display::initDisplay()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
