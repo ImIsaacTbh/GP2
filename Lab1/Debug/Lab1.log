@@ -1,5 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Display.cpp
   MainGame.cpp
 C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(29,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(51,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -8,9 +7,4 @@ C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(54,13): warning C4244: '=
 C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(55,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(57,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(58,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Mesh.cpp
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\Mesh.cpp(14,20): warning C4018: '<': signed/unsigned mismatch
-  Shader.cpp
-  Generating Code...
-  LINK : C:\Users\aster\source\repos\GP2-Lab1\Debug\Labs.exe not found or not built by the last incremental link; performing full link
   Lab1.vcxproj -> C:\Users\aster\source\repos\GP2-Lab1\Debug\Labs.exe

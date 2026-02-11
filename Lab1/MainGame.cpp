@@ -35,7 +35,7 @@ void MainGame::run()
 	f2 *= 1.3;
 	f3 *= 1.3;
 	counter = 0;
-	shader = new Shader("C:\\Users\\aster\\source\\repos\\GP2-Lab1\\Lab1\\Resources\\textureShader");
+	shader = new Shader("C:\\Users\\aster\\source\\repos\\GP2-Lab1\\Lab1\\Resources\\funnyColourThing");
 	texture = new Texture("C:\\Users\\aster\\source\\repos\\GP2-Lab1\\Lab1\\Resources\\pikmin-red-lay-leaf.png");
 
 	vector<Vertex> things = {
