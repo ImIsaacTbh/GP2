@@ -1,5 +1,5 @@
 #include "Display.h"
-#include <conio.h>
+//#include <conio.h>
 
 Display::Display()
 {
@@ -12,13 +12,13 @@ Display::~Display()
 {
 }
 
-void Display::returnError(std::string errorString)
-{
-	std::cout << (errorString + "\n" + "Press Any Key To Quit...");
-	while (_getch() < 0) {}
-	SDL_Quit();
-	exit(0);
-}
+// void Display::returnError(std::string errorString)
+// {
+// 	std::cout << (errorString + "\n" + "Press Any Key To Quit...");
+// 	while (_getch() < 0) {}
+// 	SDL_Quit();
+// 	exit(0);
+// }
 
 void Display::swapBuffer()
 {

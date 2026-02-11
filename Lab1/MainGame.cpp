@@ -238,6 +238,7 @@ void MainGame::drawGame()
 
 	Transform transform;
 
+
 	transform.SetPos(glm::vec3(0.0, sinf(counter) > 0 ? sinf(counter) : 0, 0.0));
 	transform.SetRot(glm::vec3(counter < 3 && counter > 0.5 ? counter*5 : 0.80, 0.0, 180+sinf(counter)*2));
 	transform.SetScale(glm::vec3(1.0,1.0,1.0));

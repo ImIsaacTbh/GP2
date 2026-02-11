@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include <GL\glew.h>
+#include <GL/glew.h>
 #include "transform.h"
 
 class Shader
@@ -12,11 +12,11 @@ public:
 	void Bind(); //Set gpu to use our shaders
 	void Update(const Transform& transform);
 
-	std::string Shader::LoadShader(const std::string& fileName);
+	std::string LoadShader(const std::string& fileName);
 
-	void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
+	void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 
-	GLuint Shader::CreateShader(const std::string& text, unsigned int type);
+	GLuint CreateShader(const std::string& text, unsigned int type);
 
 	~Shader();
 
