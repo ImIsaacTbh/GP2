@@ -1,10 +1,10 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   MainGame.cpp
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(29,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(51,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(52,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(54,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(55,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(57,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2-Lab1\Lab1\MainGame.cpp(58,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Lab1.vcxproj -> C:\Users\aster\source\repos\GP2-Lab1\Debug\Labs.exe
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(29,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(51,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(52,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(54,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(55,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(57,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(58,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Lab1.vcxproj -> C:\Users\Isaac\Documents\GitHub\GP2\Debug\Labs.exe
