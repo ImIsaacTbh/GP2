@@ -10,10 +10,12 @@ Shader::Shader(const std::string& filename)
 	shaders[0] = CreateShader(LoadShader(filename + ".vert"), GL_VERTEX_SHADER);
 	shaders[1] = CreateShader(LoadShader(filename + ".frag"), GL_FRAGMENT_SHADER);
 
-	for (int i = 0; i < sizeof(shaders); i++)
+	// Attach the correct number of shaders (use NUM_SHADERS, not sizeof)
+	for (int i = 0; i < NUM_SHADERS; i++)
 	{
 		glAttachShader(program, shaders[i]);
 	}
+
 	glBindAttribLocation(program, 0, "position");
 	glBindAttribLocation(program, 1, "texCoord");
 
@@ -26,7 +28,8 @@ Shader::Shader(const std::string& filename)
 
 Shader::~Shader()
 {
-	for (int i = 0; i < sizeof(shaders); i++)
+	// Use NUM_SHADERS here as well
+	for (int i = 0; i < NUM_SHADERS; i++)
 	{
 		glDetachShader(program, shaders[i]);
 		glDeleteShader(shaders[i]);
@@ -34,10 +37,15 @@ Shader::~Shader()
 	glDeleteProgram(program);
 }
 
-void Shader::Update(const Transform& transform)
+//void Shader::Update(const Transform& transform)
+//{
+//	glm::mat4 model = transform.GetModel();
+//	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &model[0][0]);
+//}
+void Shader::Update(const Transform& transform, const Camera& camera)
 {
-	glm::mat4 model = transform.GetModel();
-	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &model[0][0]);
+	glm::mat4 mvp = camera.GetViewProjection() * transform.GetModel();
+	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &mvp[0][0]);
 }
 
 

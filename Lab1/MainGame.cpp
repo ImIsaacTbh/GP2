@@ -10,6 +10,9 @@
 #include "Shader.h"
 #include "Texture.h"
 
+unsigned int indices[] = { 0, 1, 2 };
+Transform transform;
+
 MainGame::MainGame()
 {
 }
@@ -28,15 +31,15 @@ void MainGame::run()
 {
 	srand(time(NULL));
 	initSystems();
-	f1 = gimmenumber();
+	/*f1 = gimmenumber();
 	f2 = gimmenumber();
 	f3 = gimmenumber();
 	f1 *= 1.3;
 	f2 *= 1.3;
-	f3 *= 1.3;
+	f3 *= 1.3;*/
 	counter = 0;
-	shader = new Shader("../Lab1/Resources/funnyColourThing");
-	texture = new Texture("../Lab1/Resources/pikmin-red-lay-leaf.png");
+	shader = new Shader("../Lab1/Resources/textureShader");
+	texture = new Texture("../Lab1/Resources/texture.png");
 
 	vector<Vertex> things = {
 		//Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.0, 0.0)),
@@ -44,7 +47,7 @@ void MainGame::run()
 		//Vertex(glm::vec3(0.5, -0.5, 0), glm::vec2(1.0, 0.0))
 	};
 
-	double interval = 0.01;
+	/*double interval = 0.01;
 	for (double i = 1; i < 361; i = i + interval)
 	{
 		float x, y;
@@ -60,72 +63,18 @@ void MainGame::run()
 		things.push_back(Vertex(glm::vec3(x, y, 0), glm::vec2(0.5f + x, 0.5f + y)));
 		things.push_back(Vertex(glm::vec3(x2, y2, 0), glm::vec2(0.5f + x2, 0.5f + y2)));
 	}
-	fart = new Mesh(&things[0], things.size());
+	fart = new Mesh(things[0], things.size());*/
 	//compShaders();
 	gameLoop();
-}
-
-void MainGame::compShaders()
-{
-	const char* vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"layout (location = 1) in vec3 aColor;\n"
-		"out vec3 ourColor;\n"
-		"void main()\n"
-		"{\n"
-		"   gl_Position = vec4(aPos, 1.0);\n"
-		"   ourColor = aColor;\n"
-		"}\0";
-
-	const char* fragmentShaderSource = "#version 330 core\n"
-		"out vec4 FragColor;\n"
-		"in vec3 ourColor;\n"
-		"void main()\n"
-		"{\n"
-		"   FragColor = vec4(ourColor, 1.0f);\n"
-		"}\n\0";
-
-	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-	// check for shader compile errors
-	int success;
-	char infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-	// fragment shader
-	unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-	// check for shader compile errors
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-	// link shaders
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	// check for linking errors
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success) {
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-	}
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
 }
 
 void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay();
+	mesh1 = new Mesh();
+	myCamera = Camera(glm::vec3(0, 0, -4), 5, 1.777777777777778, 0.1f, 10000);
+	mesh1->LoadModel("../Lab1/Resources/monki.obj");
+
 }
 
 void MainGame::gameLoop()
@@ -148,35 +97,34 @@ void MainGame::processInput()
 			_gameState = GameState::EXIT;
 		}
 	}
+
+	//SDL_Event aaa;
+	//auto keystate = SDL_GetKeyboardState(NULL);
+	//if (keystate[SDL_SCANCODE_W])
+	//{
+	//	myCamera->MoveForward((frametime*0.001f)*5)
+	//}
 }
 
 void MainGame::drawGame()
 {
-	_gameDisplay.clearDisplay();
+	
+	_gameDisplay.clearDisplay(0.13f, 0.6f, 0.71f, 1.0f);
 	glEnableClientState(GL_COLOR_ARRAY);
-	//Vertex things[3] = {
-	//	Vertex(glm::vec3(-0.5, -0.5, 0)),
-	//	Vertex(glm::vec3(0, 0.5, 0)),
-	//	Vertex(glm::vec3(0.5, -0.5, 0))
-	//};
-
 	Transform transform;
 
-
-	//transform.SetPos(glm::vec3(0.0, sinf(counter) > 0 ? sinf(counter) : 0, 0.0));
-	//transform.SetRot(glm::vec3(counter < 3 && counter > 0.5 ? counter*5 : 0.80, 0.0, 180+sinf(counter)*2));
-	//transform.SetScale(glm::vec3(1.0,1.0,1.0));
 	transform.SetPos(glm::vec3(0.0, 0.0, 0.0));
-	transform.SetRot(glm::vec3(0.0, 0.0, 0.0));
+	transform.SetRot(glm::vec3(0.0, counter/10, 0.0));
 	transform.SetScale(glm::vec3(1.0, 1.0, 1.0));
 
-
 	shader->Bind();
-	shader->Update(transform);
+	shader->Update(transform, myCamera);
 	texture->Bind(0);
-	fart->Draw();
-	if (counter > 6) counter = 0;
-	counter = counter + 0.01f;
+	mesh1->Draw();
+	//mesh2->Draw();
+	//if (counter > 6) counter = 0;
+	counter += 0.001f;
 	glEnd();
+	//prevFrameStart = chrono::steady_clock::now();
 	_gameDisplay.swapBuffer();
 }

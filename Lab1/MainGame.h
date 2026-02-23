@@ -6,6 +6,7 @@
 #include "Mesh.h"
 #include "Shader.h"
 #include "Texture.h"
+#include <chrono>
 
 enum class GameState{PLAY, EXIT};
 
@@ -16,14 +17,12 @@ public:
 	~MainGame();
 
 	void run();
-
 private:
 
 	void initSystems();
 	void processInput();
 	void gameLoop();
 	void drawGame();
-	void compShaders();
 
 
 	Shader* shader;
@@ -34,6 +33,11 @@ private:
 	float counter = 0;
 	Display _gameDisplay;
 	GameState _gameState;
+	Mesh* mesh1;
+	Mesh* mesh2;
+	Camera myCamera;
 
+	//float frametime;
+//	chrono::steady_clock::time_point prevFrameStart;
 };
 

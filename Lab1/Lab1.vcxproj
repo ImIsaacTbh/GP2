@@ -57,37 +57,32 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-  <ClCompile>
-    <WarningLevel>Level3</WarningLevel>
-    <Optimization>MaxSpeed</Optimization>
-    <FunctionLevelLinking>true</FunctionLevelLinking>
-    <IntrinsicFunctions>true</IntrinsicFunctions>
-    <SDLCheck>true</SDLCheck>
-    <AdditionalIncludeDirectories>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>
       $(ProjectDir)..\deps\include;
       %(AdditionalIncludeDirectories)
     </AdditionalIncludeDirectories>
-  </ClCompile>
-
-  <Link>
-    <GenerateDebugInformation>true</GenerateDebugInformation>
-    <EnableCOMDATFolding>true</EnableCOMDATFolding>
-    <OptimizeReferences>true</OptimizeReferences>
-
-    <SubSystem>Console</SubSystem>
-
-    <AdditionalLibraryDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>
       $(ProjectDir)..\deps\lib;
       %(AdditionalLibraryDirectories)
     </AdditionalLibraryDirectories>
-
-    <AdditionalDependencies>
+      <AdditionalDependencies>
       SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)
     </AdditionalDependencies>
-  </Link>
-</ItemDefinitionGroup>
-
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="main.cpp" />
@@ -103,19 +98,29 @@
     <ClInclude Include="Display.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="objLoader.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="STB.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\res\smolSPHERE.mtl" />
+    <None Include="..\res\THE S P H E R E.mtl" />
     <None Include="Resources\funnyColourThing.frag" />
     <None Include="Resources\funnyColourThing.vert" />
+    <None Include="Resources\materialShader.frag" />
+    <None Include="Resources\materialShader.vert" />
     <None Include="Resources\textureShader.frag" />
     <None Include="Resources\textureShader.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\pikmin-red-lay-leaf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Resources\smolSPHERE.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Object>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

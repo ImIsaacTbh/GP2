@@ -65,6 +65,9 @@
     <ClInclude Include="camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="objLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\funnyColourThing.frag">
@@ -79,10 +82,27 @@
     <None Include="Resources\textureShader.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\res\smolSPHERE.mtl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\THE S P H E R E.mtl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\materialShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\materialShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\pikmin-red-lay-leaf.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Resources\smolSPHERE.obj">
+      <Filter>Resource Files</Filter>
+    </Object>
   </ItemGroup>
 </Project>
