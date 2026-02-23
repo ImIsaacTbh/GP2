@@ -8,6 +8,14 @@ Mesh::Mesh()
 
 }
 
+Mesh::Mesh(std::string shaderPath, std::string texturePath)
+{
+	if(!shaderPath.empty())
+		shader = new Shader(shaderPath);
+	if(!texturePath.empty())
+		texture = new Texture(texturePath);
+}
+
 //Mesh::Mesh(Vertex* vertices, unsigned int numVertices)
 //{
 //	Mesh::drawCount = numVertices;
@@ -69,6 +77,15 @@ void Mesh::LoadModel(const std::string& filename)
 	objl::Loader loader;
 	loader.LoadFile(filename);
 	InitModel(loader.LoadedMeshes[0]);
+	InitMaterials(loader.LoadedMaterials);
+}
+
+void Mesh::InitMaterials(const std::vector<objl::Material> mats)
+{
+	for each(auto mat in mats)
+	{
+		materials.push_back(mat);
+	}
 }
 
 void Mesh::InitModel(const objl::Mesh& model)
@@ -76,6 +93,7 @@ void Mesh::InitModel(const objl::Mesh& model)
 	std::vector<glm::vec3> positions;
 	std::vector<glm::vec2> texCoords;
 	std::vector<glm::vec3> normals;
+	std::vector<std::vector<glm::vec3>> mtlCoords;
 
 	positions.reserve(model.Vertices.size());
 	texCoords.reserve(model.Vertices.size());
@@ -117,10 +135,7 @@ void Mesh::InitModel(const objl::Mesh& model)
 	// Indices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[INDEX_VB]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.Indices.size() * sizeof(model.Indices[0]), &model.Indices[0], GL_STATIC_DRAW);
-
-	/*glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[MATERIAL]);*/
-	/*glBufferData(GL_ELEMENT_ARRAY_BUFFER, )*/
-
+	
 	glBindVertexArray(0); // unbind our VAO
 }
 

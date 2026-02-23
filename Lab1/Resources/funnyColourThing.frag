@@ -1,7 +1,23 @@
-#version 330 core
-out vec4 FragColor;
+#version 400 core
+
 in vec3 ourColor;
+in vec3 normalWorld;
+in vec3 fragPos;
+
+uniform vec3 lightPos;
+uniform vec3 lightColor;
+uniform vec3 ambientColor;
+
+out vec4 FragColor;
+
 void main()
 {
-	FragColor = vec4(ourColor, 1.0f);
-};
+	vec3 n = normalize(normalWorld);
+	vec3 l = normalize(lightPos - fragPos);
+	
+	float diff = max(dot(n, l), 0.0);
+	vec3 diffuse = diff * lightColor;
+	vec3 ambient = ambientColor;
+	
+	FragColor = vec4(ourColor * (ambient + diffuse), 1.0);
+}

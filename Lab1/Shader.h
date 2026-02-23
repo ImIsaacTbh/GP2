@@ -2,7 +2,6 @@
 #include <string>
 #include <GL/glew.h>
 #include "transform.h"
-
 class Shader
 {
 public:
@@ -10,7 +9,7 @@ public:
 	Shader(const std::string& filename);
 
 	void Bind(); //Set gpu to use our shaders
-	void Update(const Transform& transform, const Camera& camera);
+	void Update(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos);
 
 	std::string LoadShader(const std::string& fileName);
 
@@ -20,7 +19,7 @@ public:
 
 	~Shader();
 
-
+	GLuint program; // Track the shader program GLuint shaders[NUM_SHADERS]; 
 protected:
 
 private:
@@ -28,11 +27,14 @@ private:
 	enum
 	{
 		TRANSFORM_U,
+		MODEL_U,
+		LIGHT_POS_U,
+		LIGHT_COLOR_U,
+		AMBIENT_COLOR_U,
 
 		NUM_UNIFORMS
 	};
-
-	GLuint program; // Track the shader program GLuint shaders[NUM_SHADERS]; 
+	
 	GLuint shaders[NUM_SHADERS]; //array of shaders
 	GLuint uniforms[NUM_UNIFORMS]; //no of uniform variables
 

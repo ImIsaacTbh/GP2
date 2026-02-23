@@ -38,9 +38,6 @@ void MainGame::run()
 	f2 *= 1.3;
 	f3 *= 1.3;*/
 	counter = 0;
-	shader = new Shader("../Lab1/Resources/textureShader");
-	texture = new Texture("../Lab1/Resources/texture.png");
-
 	vector<Vertex> things = {
 		//Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.0, 0.0)),
 		//Vertex(glm::vec3(-0.5, -0.5, 0), glm::vec2(0.0, 1.0)),
@@ -71,10 +68,20 @@ void MainGame::run()
 void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay();
-	mesh1 = new Mesh();
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+	// regular textured shader / mesh
+	mesh1 = new Mesh("../Lab1/Resources/textureShader", "../Lab1/Resources/texture.png");
 	myCamera = Camera(glm::vec3(0, 0, -4), 5, 1.777777777777778, 0.1f, 10000);
 	mesh1->LoadModel("../Lab1/Resources/monki.obj");
 
+	mesh2 = new Mesh("../Lab1/Resources/funnyColourThing", "");
+	mesh2->LoadModel("../Lab1/Resources/monki.obj");
+
+	mesh3 = new Mesh("../Lab1/Resources/funnyColourThing", "");
+	mesh3->LoadModel("../Lab1/Resources/cube.obj");
+
+	mesh4 = new Mesh("../Lab1/Resources/textureShader", "../Lab1/Resources/bricks.jpg");
+	mesh4->LoadModel("../Lab1/Resources/plane.obj");
 }
 
 void MainGame::gameLoop()
@@ -98,30 +105,87 @@ void MainGame::processInput()
 		}
 	}
 
-	//SDL_Event aaa;
-	//auto keystate = SDL_GetKeyboardState(NULL);
-	//if (keystate[SDL_SCANCODE_W])
-	//{
-	//	myCamera->MoveForward((frametime*0.001f)*5)
-	//}
+	SDL_Event aaa;
+	auto keystate = SDL_GetKeyboardState(NULL);
+	if (keystate[SDL_SCANCODE_W])
+	{
+		myCamera.MoveForward(0.01);
+	}
+	if (keystate[SDL_SCANCODE_S])
+	{
+		myCamera.MoveForward(-0.01);
+	}
+	if (keystate[SDL_SCANCODE_A])
+	{
+		myCamera.MoveRight(-0.01);
+	}
+	if (keystate[SDL_SCANCODE_D])
+	{
+		myCamera.MoveRight(0.01);
+	}
+	if(keystate[SDL_SCANCODE_ESCAPE])
+	{
+		_gameState = GameState::EXIT;
+	}
+
+	SDL_Event mouseEvent;
+	while (SDL_PollEvent(&mouseEvent))
+	{
+		switch (mouseEvent.type)
+		{
+		case SDL_MOUSEMOTION:
+			myCamera.Pitch(mouseEvent.motion.yrel * -0.005f);
+			myCamera.RotateY(mouseEvent.motion.xrel * 0.005f);
+			break;
+		}
+	}
 }
 
 void MainGame::drawGame()
 {
-	
 	_gameDisplay.clearDisplay(0.13f, 0.6f, 0.71f, 1.0f);
 	glEnableClientState(GL_COLOR_ARRAY);
-	Transform transform;
 
-	transform.SetPos(glm::vec3(0.0, 0.0, 0.0));
+	lightingTransform.SetPos(glm::vec3(glm::sin(counter) * 10, glm::sin(counter*5), glm::cos(counter) * 10));
+	lightingTransform.SetRot(*lightingTransform.GetPos() - glm::vec3(0, 0, 0));
+
+	Transform lightThingTransform;
+	lightThingTransform.SetPos(*lightingTransform.GetPos());
+	lightThingTransform.SetRot(*lightingTransform.GetRot());
+	lightThingTransform.SetScale(glm::vec3(0.5, 0.5, 0.5));
+
+	Transform transform;
+	transform.SetPos(glm::vec3(2, 0.0, 0.0));
 	transform.SetRot(glm::vec3(0.0, counter/10, 0.0));
 	transform.SetScale(glm::vec3(1.0, 1.0, 1.0));
 
-	shader->Bind();
-	shader->Update(transform, myCamera);
-	texture->Bind(0);
+	Transform transform2;
+	transform2.SetPos(glm::vec3(-2, 0.0, 0.0));
+	transform2.SetRot(glm::vec3(0.0, -counter / 10, 0.0));
+	transform.SetScale(glm::vec3(1.0, 1.0, 1.0));
+
+	Transform groundTransform;
+	groundTransform.SetPos(glm::vec3(0, 2, 0));
+	groundTransform.SetRot(glm::vec3(0, 0, glm::pi<float>()));
+	groundTransform.SetScale(glm::vec3(15, 0 , 15));
+
+	mesh1->shader->Bind();
+	mesh1->shader->Update(transform, myCamera, *lightingTransform.GetPos());
+	mesh1->texture->Bind(0);
 	mesh1->Draw();
-	//mesh2->Draw();
+
+	mesh2->shader->Bind();
+	mesh2->shader->Update(transform2, myCamera, *lightingTransform.GetPos());
+	mesh2->Draw();
+
+	mesh3->shader->Bind();
+	mesh3->shader->Update(lightThingTransform, myCamera, *lightingTransform.GetPos());
+	mesh3->Draw();
+
+	mesh4->shader->Bind();
+	mesh4->shader->Update(groundTransform, myCamera, *lightingTransform.GetPos());
+	mesh4->texture->Bind(0);
+	mesh4->Draw();
 	//if (counter > 6) counter = 0;
 	counter += 0.001f;
 	glEnd();

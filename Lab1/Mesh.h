@@ -2,6 +2,8 @@
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 #include "objLoader.h"
+#include "Shader.h"
+#include "Texture.h"
 
 struct Vertex
 {
@@ -24,11 +26,17 @@ private:
 	glm::vec3 normal;
 };
 
+struct material
+{
+	glm::vec3 diffuse;
+	std::vector<glm::vec3> affectedVerts;
+};
+
 class Mesh
 {
 public:
 	Mesh();
-	//Mesh(Vertex* vertices, unsigned int numVertices);
+	Mesh(std::string shaderPath, std::string texturePath);
 	~Mesh();
 
 	void Draw();
@@ -36,7 +44,10 @@ public:
 	void LoadModel(const std::string& filename);
 	void InitModel(const objl::Mesh& model);
 	void InitModel(const IndexedModel& model);
+	void InitMaterials(const std::vector<objl::Material> mats);
 
+	Shader* shader;
+	Texture* texture;
 private:
 
 	enum
@@ -48,6 +59,7 @@ private:
 		NUM_BUFFERS
 	};
 
+	std::vector<objl::Material> materials;
 	GLuint vertexArrayObject;
 	GLuint vertexArrayBuffers[NUM_BUFFERS]; // create our array of buffers
 	unsigned int drawCount; //how much of the vertexArrayObject do we want to draw

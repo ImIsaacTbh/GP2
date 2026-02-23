@@ -1,15 +1,22 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Mesh.cpp
+  MainGame.cpp
 C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(705,25): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file 'Mesh.cpp')
+  (compiling source file 'MainGame.cpp')
   
 C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(742,22): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file 'Mesh.cpp')
+  (compiling source file 'MainGame.cpp')
   
 C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(748,23): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file 'Mesh.cpp')
+  (compiling source file 'MainGame.cpp')
   
 C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(1002,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Mesh.cpp')
+  (compiling source file 'MainGame.cpp')
   
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(32,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(74,44): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(112,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(116,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(120,22): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(124,22): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(108,12): warning C4101: 'aaa': unreferenced local variable
   Lab1.vcxproj -> C:\Users\Isaac\Documents\GitHub\GP2\Debug\Labs.exe

@@ -8,7 +8,7 @@
 #include "Texture.h"
 #include <chrono>
 
-enum class GameState{PLAY, EXIT};
+enum class GameState { PLAY, EXIT };
 
 class MainGame
 {
@@ -17,6 +17,7 @@ public:
 	~MainGame();
 
 	void run();
+	Transform lightingTransform;
 private:
 
 	void initSystems();
@@ -35,9 +36,10 @@ private:
 	GameState _gameState;
 	Mesh* mesh1;
 	Mesh* mesh2;
+	Mesh* mesh3;
+	Mesh* mesh4;
 	Camera myCamera;
 
 	//float frametime;
 //	chrono::steady_clock::time_point prevFrameStart;
 };
-

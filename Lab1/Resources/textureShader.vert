@@ -1,14 +1,20 @@
-#version 120
+#version 400 core
 
-attribute vec3 position;
-attribute vec2 texCoord;
+in vec3 position;
+in vec3 normal;
+in vec2 texCoord;
 
-varying vec2 texCoord0;
+out vec2 texCoord0;
+out vec3 normal0;
+out vec3 fragPos;
+
 uniform mat4 transform;
- 
-void main()
+uniform mat4 model;
 
+void main()
 {
 	gl_Position = transform * vec4(position, 1.0);
+	fragPos = vec3(model * vec4(position, 1.0));
 	texCoord0 = texCoord;
+	normal0 = normalize(mat3(transpose(inverse(model))) * normal);
 }

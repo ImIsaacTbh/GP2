@@ -1,16 +1,14 @@
 #include "Shader.h"
 #include <iostream>
 #include <fstream>
+#include <glm/gtc/type_ptr.hpp>
 
 Shader::Shader(const std::string& filename)
 {
 	program = glCreateProgram();
-	//shaders[0] = CreateShader(LoadShader("C:\\Users\\aster\\source\\repos\\GP2-Lab1\\Lab1\\Resources\\funnyColourThing.vert"), GL_VERTEX_SHADER);
-	//shaders[1] = CreateShader(LoadShader("C:\\Users\\aster\\source\\repos\\GP2-Lab1\\Lab1\\Resources\\funnyColourThing.frag"), GL_FRAGMENT_SHADER);
 	shaders[0] = CreateShader(LoadShader(filename + ".vert"), GL_VERTEX_SHADER);
 	shaders[1] = CreateShader(LoadShader(filename + ".frag"), GL_FRAGMENT_SHADER);
 
-	// Attach the correct number of shaders (use NUM_SHADERS, not sizeof)
 	for (int i = 0; i < NUM_SHADERS; i++)
 	{
 		glAttachShader(program, shaders[i]);
@@ -18,17 +16,22 @@ Shader::Shader(const std::string& filename)
 
 	glBindAttribLocation(program, 0, "position");
 	glBindAttribLocation(program, 1, "texCoord");
+	glBindAttribLocation(program, 2, "normal");
 
 	glLinkProgram(program);
-	CheckShaderError(program, GL_LINK_STATUS, true, "Erorr: link sadge");
+	CheckShaderError(program, GL_LINK_STATUS, true, "Error: link sadge");
 	glValidateProgram(program);
-	CheckShaderError(program, GL_VALIDATE_STATUS, true, "Eror: shader bad :(");
+	CheckShaderError(program, GL_VALIDATE_STATUS, true, "Error: shader bad :(");
+	
 	uniforms[TRANSFORM_U] = glGetUniformLocation(program, "transform");
+	uniforms[MODEL_U] = glGetUniformLocation(program, "model");
+	uniforms[LIGHT_POS_U] = glGetUniformLocation(program, "lightPos");
+	uniforms[LIGHT_COLOR_U] = glGetUniformLocation(program, "lightColor");
+	uniforms[AMBIENT_COLOR_U] = glGetUniformLocation(program, "ambientColor");
 }
 
 Shader::~Shader()
 {
-	// Use NUM_SHADERS here as well
 	for (int i = 0; i < NUM_SHADERS; i++)
 	{
 		glDetachShader(program, shaders[i]);
@@ -37,17 +40,22 @@ Shader::~Shader()
 	glDeleteProgram(program);
 }
 
-//void Shader::Update(const Transform& transform)
-//{
-//	glm::mat4 model = transform.GetModel();
-//	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &model[0][0]);
-//}
-void Shader::Update(const Transform& transform, const Camera& camera)
+void Shader::Update(const Transform& transform, const Camera& camera, const glm::vec3 lightPos)
 {
 	glm::mat4 mvp = camera.GetViewProjection() * transform.GetModel();
-	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &mvp[0][0]);
+	glm::mat4 model = transform.GetModel();
+	
+	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GL_FALSE, glm::value_ptr(mvp));
+	glUniformMatrix4fv(uniforms[MODEL_U], 1, GL_FALSE, glm::value_ptr(model));
+	
+	// Set static lighting
+		//Position
+	glUniform3f(uniforms[LIGHT_POS_U], lightPos.x, lightPos.y, lightPos.z);
+		//Light Colour
+	glUniform3f(uniforms[LIGHT_COLOR_U], 1.0f, 1.0f, 1.0f);
+		//Ambient Colour
+	glUniform3f(uniforms[AMBIENT_COLOR_U], 0.2f, 0.2f, 0.2f);
 }
-
 
 void Shader::Bind()
 {
@@ -101,20 +109,20 @@ void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const 
 
 GLuint Shader::CreateShader(const std::string& text, unsigned int type)
 {
-	GLuint shader = glCreateShader(type); //create shader based on specified type
+	GLuint shader = glCreateShader(type);
 
-	if (shader == 0) //if == 0 shader no created
+	if (shader == 0)
 		std::cerr << "Error type creation failed " << type << std::endl;
 
-	const GLchar* stringSource[1]; //convert strings into list of c-strings
+	const GLchar* stringSource[1];
 	stringSource[0] = text.c_str();
 	GLint lengths[1];
 	lengths[0] = text.length();
 
-	glShaderSource(shader, 1, stringSource, lengths); //send source code to opengl
-	glCompileShader(shader); //get open gl to compile shader code
+	glShaderSource(shader, 1, stringSource, lengths);
+	glCompileShader(shader);
 
-	CheckShaderError(shader, GL_COMPILE_STATUS, false, "Error compiling shader!"); //check for compile error
+	CheckShaderError(shader, GL_COMPILE_STATUS, false, "Error compiling shader!");
 
 	return shader;
 }
