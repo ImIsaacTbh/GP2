@@ -13,10 +13,12 @@ C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(1002,18): warning C4244: 'i
   (compiling source file 'MainGame.cpp')
   
 C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(32,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(74,44): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(112,24): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(116,24): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(120,22): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(124,22): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(108,12): warning C4101: 'aaa': unreferenced local variable
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(70,44): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(99,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(103,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(107,22): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(111,22): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(95,12): warning C4101: 'aaa': unreferenced local variable
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(166,20): warning C4018: '<': signed/unsigned mismatch
   Lab1.vcxproj -> C:\Users\Isaac\Documents\GitHub\GP2\Debug\Labs.exe

@@ -68,6 +68,15 @@
     <ClInclude Include="objLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\funnyColourThing.frag">
@@ -88,16 +97,19 @@
     <None Include="..\res\THE S P H E R E.mtl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\materialShader.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Resources\materialShader.vert">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="Resources\depthShader.frag">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\depthShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shadaer1.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\godRays.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\godRays.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

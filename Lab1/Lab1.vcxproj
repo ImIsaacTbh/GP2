@@ -99,6 +99,9 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="objLoader.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="resource2.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="STB.h" />
     <ClInclude Include="Texture.h" />
@@ -111,10 +114,11 @@
     <None Include="Resources\depthShader.vert" />
     <None Include="Resources\funnyColourThing.frag" />
     <None Include="Resources\funnyColourThing.vert" />
-    <None Include="Resources\materialShader.frag" />
-    <None Include="Resources\materialShader.vert" />
+    <None Include="Resources\godRays.frag" />
+    <None Include="Resources\godRays.vert" />
     <None Include="Resources\textureShader.frag" />
     <None Include="Resources\textureShader.vert" />
+    <None Include="shadaer1.bin" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\pikmin-red-lay-leaf.png" />

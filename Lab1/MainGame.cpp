@@ -31,57 +31,44 @@ void MainGame::run()
 {
 	srand(time(NULL));
 	initSystems();
-	/*f1 = gimmenumber();
-	f2 = gimmenumber();
-	f3 = gimmenumber();
-	f1 *= 1.3;
-	f2 *= 1.3;
-	f3 *= 1.3;*/
 	counter = 0;
 	vector<Vertex> things = {
 		//Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.0, 0.0)),
 		//Vertex(glm::vec3(-0.5, -0.5, 0), glm::vec2(0.0, 1.0)),
 		//Vertex(glm::vec3(0.5, -0.5, 0), glm::vec2(1.0, 0.0))
 	};
-
-	/*double interval = 0.01;
-	for (double i = 1; i < 361; i = i + interval)
-	{
-		float x, y;
-		x = (0.5 * sin(i));
-		y = (0.5 * cos(i));
-		float x2, y2;
-		x2 = (0.5 * sin(i + interval));
-		y2 = (0.5 * cos(i + interval));
-
-		float coordX = ((0 + x + x2) / 3) * 1.5;
-		float coordY = ((0 + y + y2) / 3) * 1.5;
-		things.push_back(Vertex(glm::vec3(0, 0, 0), glm::vec2(0.0, 0.0)));
-		things.push_back(Vertex(glm::vec3(x, y, 0), glm::vec2(0.5f + x, 0.5f + y)));
-		things.push_back(Vertex(glm::vec3(x2, y2, 0), glm::vec2(0.5f + x2, 0.5f + y2)));
-	}
-	fart = new Mesh(things[0], things.size());*/
-	//compShaders();
-	gameLoop();
+	gameLoop(); 
 }
 
 void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay();
 	SDL_SetRelativeMouseMode(SDL_TRUE);
-	// regular textured shader / mesh
-	mesh1 = new Mesh("../Lab1/Resources/textureShader", "../Lab1/Resources/texture.png");
+
+	glGenFramebuffers(1, &fbo);
+
+	objects.push_back(*(new _object{0,
+		Transform(glm::vec3(2, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(1.0, 1.0, 1.0)),
+		new Mesh("../Lab1/Resources/textureShader", "../Lab1/Resources/texture.png"), "../Lab1/Resources/monki.obj"
+		}));
+
+	objects.push_back(*(new _object{1,
+		Transform(glm::vec3(-2, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(1.0, 1.0, 1.0)),
+		new Mesh("../Lab1/Resources/funnyColourThing", ""), "../Lab1/Resources/monki.obj"
+		}));
+
+	objects.push_back(*(new _object{2,
+		Transform(glm::vec3(0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(1.0, 1.0, 1.0)),
+		new Mesh("../Lab1/Resources/funnyColourThing", ""), "../Lab1/Resources/cube.obj"
+		}));
+
+	objects.push_back(*(new _object{3,
+		Transform(glm::vec3(0, 2, 0), glm::vec3(0.0, 0.0, glm::pi<float>()), glm::vec3(15, 0, 15)),
+		new Mesh("../Lab1/Resources/textureShader", "../Lab1/Resources/bricks.jpg"), "../Lab1/Resources/plane.obj"
+		}));
+
 	myCamera = Camera(glm::vec3(0, 0, -4), 5, 1.777777777777778, 0.1f, 10000);
-	mesh1->LoadModel("../Lab1/Resources/monki.obj");
-
-	mesh2 = new Mesh("../Lab1/Resources/funnyColourThing", "");
-	mesh2->LoadModel("../Lab1/Resources/monki.obj");
-
-	mesh3 = new Mesh("../Lab1/Resources/funnyColourThing", "");
-	mesh3->LoadModel("../Lab1/Resources/cube.obj");
-
-	mesh4 = new Mesh("../Lab1/Resources/textureShader", "../Lab1/Resources/bricks.jpg");
-	mesh4->LoadModel("../Lab1/Resources/plane.obj");
+	godrayShader = new Shader("../Lab1/Resources/godRays");
 }
 
 void MainGame::gameLoop()
@@ -141,10 +128,26 @@ void MainGame::processInput()
 	}
 }
 
+void MainGame::drawAllObjects()
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i]._mesh->shader->Bind();
+		objects[i]._mesh->shader->Update(objects[i]._transform, myCamera, *lightingTransform.GetPos());
+		if (objects[i]._mesh->texture != nullptr)
+		{
+			objects[i]._mesh->texture->Bind(0);
+		}
+		objects[i]._mesh->Draw();
+	}
+}
+
 void MainGame::drawGame()
 {
 	_gameDisplay.clearDisplay(0.13f, 0.6f, 0.71f, 1.0f);
 	glEnableClientState(GL_COLOR_ARRAY);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 	lightingTransform.SetPos(glm::vec3(glm::sin(counter) * 10, glm::sin(counter*5), glm::cos(counter) * 10));
 	lightingTransform.SetRot(*lightingTransform.GetPos() - glm::vec3(0, 0, 0));
@@ -154,41 +157,26 @@ void MainGame::drawGame()
 	lightThingTransform.SetRot(*lightingTransform.GetRot());
 	lightThingTransform.SetScale(glm::vec3(0.5, 0.5, 0.5));
 
-	Transform transform;
-	transform.SetPos(glm::vec3(2, 0.0, 0.0));
-	transform.SetRot(glm::vec3(0.0, counter/10, 0.0));
-	transform.SetScale(glm::vec3(1.0, 1.0, 1.0));
+	objects[0]._transform.SetRot(glm::vec3(0.0, counter / 10, 0.0));
+	objects[1]._transform.SetRot(glm::vec3(0.0, -counter / 10, 0.0));
+	objects[2]._transform = lightThingTransform;
 
-	Transform transform2;
-	transform2.SetPos(glm::vec3(-2, 0.0, 0.0));
-	transform2.SetRot(glm::vec3(0.0, -counter / 10, 0.0));
-	transform.SetScale(glm::vec3(1.0, 1.0, 1.0));
 
-	Transform groundTransform;
-	groundTransform.SetPos(glm::vec3(0, 2, 0));
-	groundTransform.SetRot(glm::vec3(0, 0, glm::pi<float>()));
-	groundTransform.SetScale(glm::vec3(15, 0 , 15));
+	godrayShader->Bind();
+	for (int i = 0; i < objects.size(); i++)
+	{
+		godrayShader->Update(objects[i]._transform, myCamera, *lightingTransform.GetPos());
+		objects[i]._mesh->Draw();
+	}
 
-	mesh1->shader->Bind();
-	mesh1->shader->Update(transform, myCamera, *lightingTransform.GetPos());
-	mesh1->texture->Bind(0);
-	mesh1->Draw();
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	mesh2->shader->Bind();
-	mesh2->shader->Update(transform2, myCamera, *lightingTransform.GetPos());
-	mesh2->Draw();
+	drawAllObjects();
 
-	mesh3->shader->Bind();
-	mesh3->shader->Update(lightThingTransform, myCamera, *lightingTransform.GetPos());
-	mesh3->Draw();
 
-	mesh4->shader->Bind();
-	mesh4->shader->Update(groundTransform, myCamera, *lightingTransform.GetPos());
-	mesh4->texture->Bind(0);
-	mesh4->Draw();
-	//if (counter > 6) counter = 0;
 	counter += 0.001f;
 	glEnd();
-	//prevFrameStart = chrono::steady_clock::now();
+	prevFrameStart = chrono::steady_clock::now();
 	_gameDisplay.swapBuffer();
+	glDeleteFramebuffers(0, &fbo);
 }
