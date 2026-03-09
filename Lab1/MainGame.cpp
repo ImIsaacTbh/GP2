@@ -75,8 +75,11 @@ void MainGame::gameLoop()
 {
 	while (_gameState != GameState::EXIT)
 	{
+		while (chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - prevFrameStart).count() < 16.6667f) {}
 		processInput();
 		drawGame();
+		deltaTime = glm::abs(chrono::duration_cast<chrono::milliseconds>(prevFrameStart - chrono::steady_clock::now()).count() / 1000.0f);
+		prevFrameStart = chrono::steady_clock::now();
 	}
 }
 
@@ -89,43 +92,44 @@ void MainGame::processInput()
 		{
 		case SDL_QUIT:
 			_gameState = GameState::EXIT;
+			break;
+		case SDL_MOUSEMOTION:
+			myCamera.Pitch(aaaa.motion.yrel * -0.05f * deltaTime);
+			myCamera.RotateY(aaaa.motion.xrel * 0.05f * deltaTime);
+			break;
 		}
 	}
 
-	SDL_Event aaa;
 	auto keystate = SDL_GetKeyboardState(NULL);
 	if (keystate[SDL_SCANCODE_W])
 	{
-		myCamera.MoveForward(0.01);
+		myCamera.MoveForward(0.01 * 1000 * deltaTime);
 	}
 	if (keystate[SDL_SCANCODE_S])
 	{
-		myCamera.MoveForward(-0.01);
+		myCamera.MoveForward(-0.01 * 1000 * deltaTime);
 	}
 	if (keystate[SDL_SCANCODE_A])
 	{
-		myCamera.MoveRight(-0.01);
+		myCamera.MoveRight(-0.01 * 1000 * deltaTime);
 	}
-	if (keystate[SDL_SCANCODE_D])
+	if (keystate[SDL_SCANCODE_D]*1000*deltaTime)
 	{
-		myCamera.MoveRight(0.01);
+		myCamera.MoveRight(0.01*1000*deltaTime);
 	}
 	if(keystate[SDL_SCANCODE_ESCAPE])
 	{
 		_gameState = GameState::EXIT;
 	}
 
-	SDL_Event mouseEvent;
-	while (SDL_PollEvent(&mouseEvent))
-	{
-		switch (mouseEvent.type)
-		{
-		case SDL_MOUSEMOTION:
-			myCamera.Pitch(mouseEvent.motion.yrel * -0.005f);
-			myCamera.RotateY(mouseEvent.motion.xrel * 0.005f);
-			break;
-		}
-	}
+	//SDL_Event mouseEvent;
+	//while (SDL_PollEvent(&mouseEvent))
+	//{
+	//	switch (mouseEvent.type)
+	//	{
+	//		
+	//	}
+	//}
 }
 
 void MainGame::drawAllObjects()
@@ -157,8 +161,8 @@ void MainGame::drawGame()
 	lightThingTransform.SetRot(*lightingTransform.GetRot());
 	lightThingTransform.SetScale(glm::vec3(0.5, 0.5, 0.5));
 
-	objects[0]._transform.SetRot(glm::vec3(0.0, counter / 10, 0.0));
-	objects[1]._transform.SetRot(glm::vec3(0.0, -counter / 10, 0.0));
+	objects[0]._transform.SetRot(glm::vec3(0.0, counter*2, 0.0));
+	objects[1]._transform.SetRot(glm::vec3(0.0, -counter*2, 0.0));
 	objects[2]._transform = lightThingTransform;
 
 
@@ -174,9 +178,9 @@ void MainGame::drawGame()
 	drawAllObjects();
 
 
-	counter += 0.001f;
+	counter += 0.01f*100*deltaTime;
 	glEnd();
-	prevFrameStart = chrono::steady_clock::now();
 	_gameDisplay.swapBuffer();
 	glDeleteFramebuffers(0, &fbo);
+
 }

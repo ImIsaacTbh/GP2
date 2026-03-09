@@ -60,5 +60,6 @@ private:
 	unsigned int fbo;
 
 	float frametime;
+	float deltaTime;
 	chrono::steady_clock::time_point prevFrameStart;
 };

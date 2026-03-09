@@ -1,24 +1,23 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab1.vcxproj, Labs.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   MainGame.cpp
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(705,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(705,25): warning C4018: '<': signed/unsigned mismatch
   (compiling source file 'MainGame.cpp')
   
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(742,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(742,22): warning C4018: '<': signed/unsigned mismatch
   (compiling source file 'MainGame.cpp')
   
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(748,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(748,23): warning C4018: '<': signed/unsigned mismatch
   (compiling source file 'MainGame.cpp')
   
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\objLoader.h(1002,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(1002,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MainGame.cpp')
   
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(32,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(70,44): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(99,24): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(103,24): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(107,22): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(111,22): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(95,12): warning C4101: 'aaa': unreferenced local variable
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(133,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Isaac\Documents\GitHub\GP2\Lab1\MainGame.cpp(166,20): warning C4018: '<': signed/unsigned mismatch
-  Lab1.vcxproj -> C:\Users\Isaac\Documents\GitHub\GP2\Debug\Labs.exe
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(32,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(70,44): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(106,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(110,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(114,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(118,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(137,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(170,20): warning C4018: '<': signed/unsigned mismatch
+  Lab1.vcxproj -> C:\Users\aster\source\repos\GP2\Debug\GP2.exe
