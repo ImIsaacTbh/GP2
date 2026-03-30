@@ -9,7 +9,7 @@ public:
 	Shader(const std::string& filename);
 
 	void Bind(); //Set gpu to use our shaders
-	void Update(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos);
+	void Update(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos, const glm::vec3 basicColor = glm::vec3(0,0,0));
 
 	std::string LoadShader(const std::string& fileName);
 
@@ -31,6 +31,7 @@ private:
 		LIGHT_POS_U,
 		LIGHT_COLOR_U,
 		AMBIENT_COLOR_U,
+		BASIC_COLOUR_U,
 
 		NUM_UNIFORMS
 	};

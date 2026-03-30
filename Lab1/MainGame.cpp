@@ -67,6 +67,10 @@ void MainGame::initSystems()
 		new Mesh("../Lab1/Resources/textureShader", "../Lab1/Resources/bricks.jpg"), "../Lab1/Resources/plane.obj"
 		}));
 
+	objects.push_back(*(new _object{ 4,
+		Transform(glm::vec3(0, 0, 0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(-30, -30, -30)),
+		new Mesh("../Lab1/Resources/colourShader", ""), "../Lab1/Resources/smolSPHERE.obj", glm::vec3(1.0, 0.5, 0.5)}));
+
 	myCamera = Camera(glm::vec3(0, 0, -4), 5, 1.777777777777778, 0.1f, 10000);
 	godrayShader = new Shader("../Lab1/Resources/godRays");
 }
@@ -137,7 +141,14 @@ void MainGame::drawAllObjects()
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i]._mesh->shader->Bind();
-		objects[i]._mesh->shader->Update(objects[i]._transform, myCamera, *lightingTransform.GetPos());
+		if(objects[i]._basicColor != glm::vec3(0, 0, 0))
+		{
+			objects[i]._mesh->shader->Update(objects[i]._transform, myCamera, *lightingTransform.GetPos(), objects[i]._basicColor);
+		}
+		else
+		{
+			objects[i]._mesh->shader->Update(objects[i]._transform, myCamera, *lightingTransform.GetPos());
+		}
 		if (objects[i]._mesh->texture != nullptr)
 		{
 			objects[i]._mesh->texture->Bind(0);

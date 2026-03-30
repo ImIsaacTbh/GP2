@@ -26,11 +26,13 @@ public:
 	void MoveForward(float amt)
 	{
 		pos += forward * amt;
+		pos.y = 0;
 	}
 
 	void MoveRight(float amt)
 	{
 		pos += glm::cross(up, forward) * amt;
+		pos.y = 0;
 	}
 
 	void Pitch(float angle)

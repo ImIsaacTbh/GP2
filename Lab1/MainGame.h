@@ -10,19 +10,27 @@
 
 enum class GameState { PLAY, EXIT };
 
+class Attribute
+{
+
+};
+
 struct _object
 {
-	_object(int id, Transform transform, Mesh* mesh, const std::string objPath)
+	_object(int id, Transform transform, Mesh* mesh, const std::string objPath, const glm::vec3 basicColor = glm::vec3(0, 0, 0))
 	{
 		this->id = id;
 		_transform = transform;
 		_mesh = mesh;
 		_mesh->LoadModel(objPath);
+		_basicColor = basicColor;
 	}
 
 	int id;
 	Transform _transform;
 	Mesh* _mesh; 
+	glm::vec3 _basicColor;
+
 };
 
 class MainGame

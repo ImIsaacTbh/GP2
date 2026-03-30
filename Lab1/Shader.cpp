@@ -28,6 +28,7 @@ Shader::Shader(const std::string& filename)
 	uniforms[LIGHT_POS_U] = glGetUniformLocation(program, "lightPos");
 	uniforms[LIGHT_COLOR_U] = glGetUniformLocation(program, "lightColor");
 	uniforms[AMBIENT_COLOR_U] = glGetUniformLocation(program, "ambientColor");
+	uniforms[BASIC_COLOUR_U] = glGetUniformLocation(program, "basicColor");
 }
 
 Shader::~Shader()
@@ -40,7 +41,7 @@ Shader::~Shader()
 	glDeleteProgram(program);
 }
 
-void Shader::Update(const Transform& transform, const Camera& camera, const glm::vec3 lightPos)
+void Shader::Update(const Transform& transform, const Camera& camera, const glm::vec3 lightPos, const glm::vec3 basicColor)
 {
 	glm::mat4 mvp = camera.GetViewProjection() * transform.GetModel();
 	glm::mat4 model = transform.GetModel();
@@ -55,6 +56,8 @@ void Shader::Update(const Transform& transform, const Camera& camera, const glm:
 	glUniform3f(uniforms[LIGHT_COLOR_U], 1.0f, 1.0f, 1.0f);
 		//Ambient Colour
 	glUniform3f(uniforms[AMBIENT_COLOR_U], 0.2f, 0.2f, 0.2f);
+	glUniform3f(uniforms[BASIC_COLOUR_U], basicColor.x, basicColor.y, basicColor.z);
+
 }
 
 void Shader::Bind()

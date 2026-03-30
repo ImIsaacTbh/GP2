@@ -110,6 +110,8 @@
   <ItemGroup>
     <None Include="..\res\smolSPHERE.mtl" />
     <None Include="..\res\THE S P H E R E.mtl" />
+    <None Include="Resources\colourShader.frag" />
+    <None Include="Resources\colourShader.vert" />
     <None Include="Resources\depthShader.frag" />
     <None Include="Resources\depthShader.vert" />
     <None Include="Resources\funnyColourThing.frag" />

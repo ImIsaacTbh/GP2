@@ -112,6 +112,12 @@
     <None Include="Resources\godRays.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Resources\colourShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\colourShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\pikmin-red-lay-leaf.png">
