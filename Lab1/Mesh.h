@@ -36,7 +36,7 @@ class Mesh
 {
 public:
 	Mesh();
-	Mesh(std::string shaderPath, std::string texturePath);
+	Mesh(std::string shaderPath, std::string texturePath, std::string bumpMap = "", std::string emissionMap = "");
 	~Mesh();
 
 	void Draw();
@@ -47,7 +47,11 @@ public:
 	void InitMaterials(const std::vector<objl::Material> mats);
 
 	Shader* shader;
-	Texture* texture;
+	Texture* diffuseTex;
+	Texture* normalTex;
+	Texture* emissionTex;
+	unsigned int drawCount;
+
 private:
 
 	enum
@@ -61,6 +65,5 @@ private:
 
 	std::vector<objl::Material> materials;
 	GLuint vertexArrayObject;
-	GLuint vertexArrayBuffers[NUM_BUFFERS]; // create our array of buffers
-	unsigned int drawCount; //how much of the vertexArrayObject do we want to draw
+	GLuint vertexArrayBuffers[NUM_BUFFERS];
 };

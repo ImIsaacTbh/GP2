@@ -33,6 +33,14 @@ struct _object
 
 };
 
+enum Primitive
+{
+	CUBE,
+	ICOSPHERE,
+	CAPSULE,
+	MONKI
+};
+
 class MainGame
 {
 public:
@@ -45,29 +53,37 @@ private:
 
 	void initSystems();
 	void processInput();
+
+	// dynamic instantiation
+	void CreatePrimitive(Primitive p, Shader s);
+	void SetPrimitiveTransform(Transform t);
+
 	void gameLoop();
+	void startIMGUI();
 	void drawGame();
 	void drawAllObjects();
+	void shadowPass(const std::vector<glm::vec3>& lightPositions);
+	glm::mat4 CalculateLightSpaceMatrix();
 
 	std::vector<_object> objects;
-	Shader* godrayShader;
-	//Shader* shader;
-	//Texture* texture;
-	//Mesh* fart;
+	Shader* shadowShader;
 	double f1, f2, f3;
 	unsigned int shaderProgram;
 	float counter = 0;
 	Display _gameDisplay;
 	GameState _gameState;
-	//Mesh* mesh1;
-	//Mesh* mesh2;
-	//Mesh* mesh3;
-	//Mesh* mesh4;
 	Camera myCamera;
+	const float sens = 5;
 
 	unsigned int fbo;
+	GLuint shadowMaps[4];
+	GLuint shadowFBOs[4];
+	const unsigned int SHADOW_WIDTH = 2048;
+	const unsigned int SHADOW_HEIGHT = 2048;
 
 	float frametime;
-	float deltaTime;
-	chrono::steady_clock::time_point prevFrameStart;
+	double deltaTime;
+	float framesCompleted;
+	chrono::high_resolution_clock::time_point prevFrameStart;
+	chrono::steady_clock::time_point second;
 };

@@ -8,12 +8,19 @@ Mesh::Mesh()
 
 }
 
-Mesh::Mesh(std::string shaderPath, std::string texturePath)
+Mesh::Mesh(std::string shaderPath, std::string texturePath, std::string bumpMap, std::string emissionMap)
 {
+	normalTex = nullptr;
+	emissionTex = nullptr;
+	diffuseTex = nullptr;
 	if(!shaderPath.empty())
 		shader = new Shader(shaderPath);
 	if(!texturePath.empty())
-		texture = new Texture(texturePath);
+		diffuseTex = new Texture(texturePath);
+	//if (!bumpMap.empty())
+	//	normalTex = new Texture(bumpMap);
+	//if (!emissionMap.empty())
+	//	emissionTex = new Texture(emissionMap);
 }
 
 //Mesh::Mesh(Vertex* vertices, unsigned int numVertices)

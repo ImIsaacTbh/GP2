@@ -1,10 +1,13 @@
 #include "Display.h"
+#include "IMGUI/imgui.h"
+#include "IMGUI/imgui_impl_sdl2.h"
+#include "IMGUI/imgui_impl_opengl3.h"
 
 Display::Display()
 {
 	_window = nullptr; //initialise to generate null access violation for debugging. 
-	_screenWidth = 1280.0f;
-	_screenHeight = 720.0f; 
+	_screenWidth = 1706;
+	_screenHeight = 960; 
 }
 
 Display::~Display()
@@ -48,4 +51,15 @@ void Display::initDisplay()
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
 	glClearColor(0.13f, 0.6f, 0.71f, 0.0f);
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+	// Setup Platform/Renderer backends
+	ImGui_ImplSDL2_InitForOpenGL(_window, context);
+	ImGui_ImplOpenGL3_Init();
+
+	std::cout << glGetString(GL_VERSION) << std::endl;
 }

@@ -27,6 +27,6 @@ private:
 	void returnError(std::string errorString);
 
 	SDL_Window* _window; //holds pointer to out window
-	float _screenWidth;
-	float _screenHeight;
+	int _screenWidth;
+	int _screenHeight;
 };

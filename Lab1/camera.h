@@ -52,6 +52,10 @@ public:
 		forward = glm::vec3(glm::normalize(rotation * glm::vec4(forward, 0.0)));
 		up = glm::vec3(glm::normalize(rotation * glm::vec4(up, 0.0)));
 	}
+	inline glm::vec3 GetPosition() const
+	{
+		return pos;
+	}
 
 protected:
 private:

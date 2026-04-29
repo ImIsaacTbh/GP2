@@ -2,28 +2,33 @@
 #include <string>
 #include <GL/glew.h>
 #include "transform.h"
+#include <vector>
+
 class Shader
 {
 public:
 
 	Shader(const std::string& filename);
 
-	void Bind(); //Set gpu to use our shaders
-	void Update(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos, const glm::vec3 basicColor = glm::vec3(0,0,0));
-
+	void Bind();
+	void Update(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos, const glm::vec3 basicColor = glm::vec3(0, 0, 0));
+	void UpdateWithShadow(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos, const glm::mat4 lightSpaceMatrix, const glm::vec3 basicColor = glm::vec3(0, 0, 0));
+	void SetLights(const std::vector<glm::vec3>& positions, const std::vector<glm::vec3>& colors);
 	std::string LoadShader(const std::string& fileName);
-
+	void SetTexture(const std::string& name, GLuint textureID, int unit);
 	void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
+	void SetLightSpaceMatrices(const std::vector<glm::mat4>& matrices);
 
 	GLuint CreateShader(const std::string& text, unsigned int type);
 
 	~Shader();
 
-	GLuint program; // Track the shader program GLuint shaders[NUM_SHADERS]; 
+	GLuint program;
+
 protected:
 
 private:
-	static const unsigned int NUM_SHADERS = 2; // number of shaders
+	static const unsigned int NUM_SHADERS = 2;
 	enum
 	{
 		TRANSFORM_U,
@@ -32,11 +37,15 @@ private:
 		LIGHT_COLOR_U,
 		AMBIENT_COLOR_U,
 		BASIC_COLOUR_U,
+		VIEW_POS_U,
+		LIGHT_SPACE_MATRIX_U,
+		DIFFUSE_TEX_U,
+		NORMAL_TEX_U,
+		EMISSION_TEX_U,
 
 		NUM_UNIFORMS
 	};
-	
-	GLuint shaders[NUM_SHADERS]; //array of shaders
-	GLuint uniforms[NUM_UNIFORMS]; //no of uniform variables
 
+	GLuint shaders[NUM_SHADERS];
+	GLuint uniforms[NUM_UNIFORMS];
 };
