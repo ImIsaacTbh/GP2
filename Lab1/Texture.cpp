@@ -9,6 +9,7 @@ Texture::Texture(const std::string& fileName)
 	int height = 0;
 	int compnentCount = 0;
 	unsigned char* imageData = stbi_load((fileName).c_str(), &width, &height, &compnentCount, 4); //4 is the required components (not important for us)
+	_path = fileName;
 	if (imageData == NULL)
 	{
 		std::cerr << "texture load failed" << fileName << std::endl;

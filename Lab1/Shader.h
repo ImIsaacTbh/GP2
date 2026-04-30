@@ -10,6 +10,7 @@ public:
 
 	Shader(const std::string& filename);
 
+	std::string GetPath() const { return _path; }
 	void Bind();
 	void Update(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos, const glm::vec3 basicColor = glm::vec3(0, 0, 0));
 	void UpdateWithShadow(const Transform& transform, const Camera& camera, const glm::vec3 lightingPos, const glm::mat4 lightSpaceMatrix, const glm::vec3 basicColor = glm::vec3(0, 0, 0));
@@ -28,6 +29,7 @@ public:
 protected:
 
 private:
+	std::string _path;
 	static const unsigned int NUM_SHADERS = 2;
 	enum
 	{

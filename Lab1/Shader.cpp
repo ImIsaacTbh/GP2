@@ -6,6 +6,7 @@
 
 Shader::Shader(const std::string& filename)
 {
+	_path = filename;
 	program = glCreateProgram();
 	shaders[0] = CreateShader(LoadShader(filename + ".vert"), GL_VERTEX_SHADER);
 	shaders[1] = CreateShader(LoadShader(filename + ".frag"), GL_FRAGMENT_SHADER);
@@ -133,7 +134,6 @@ void Shader::UpdateWithShadow(const Transform& transform, const Camera& camera, 
 	//glUniform3f(uniforms[AMBIENT_COLOR_U], 1.0f, 1.0f, 1.0f); debug 
 	glUniform3f(uniforms[BASIC_COLOUR_U], basicColor.x, basicColor.y, basicColor.z);
 	
-	// Set view position - THIS IS CRITICAL
 	if (uniforms[VIEW_POS_U] != -1)
 	{
 		glm::vec3 camPos = camera.GetPosition();

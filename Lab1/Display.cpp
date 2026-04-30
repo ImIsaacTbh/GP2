@@ -5,7 +5,7 @@
 
 Display::Display()
 {
-	_window = nullptr; //initialise to generate null access violation for debugging. 
+	_window = nullptr;
 	_screenWidth = 1706;
 	_screenHeight = 960; 
 }
@@ -28,14 +28,14 @@ void Display::swapBuffer()
 void Display::clearDisplay(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 }
 
 void Display::initDisplay()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8); //Min no of bits used to diplay colour
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // set up double buffer   

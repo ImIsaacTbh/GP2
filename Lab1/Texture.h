@@ -7,12 +7,13 @@ class Texture
 public:
 	Texture(const std::string& fileName);
 
-	void Bind(unsigned int unit); // bind upto 32 textures
+	std::string GetPath() const { return _path; }
+	void Bind(unsigned int unit); // 32
 	GLuint GetID() const { return textureHandler; }
 	~Texture();
 
 protected:
 private:
-
+	std::string _path;
 	GLuint textureHandler;
 };

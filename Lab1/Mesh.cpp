@@ -49,7 +49,7 @@ Mesh::Mesh(std::string shaderPath, std::string texturePath, std::string bumpMap,
 //	glEnableVertexAttribArray(1);
 //	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 //
-//	//bind those 2 fuckers
+//	//bind those 2 mfs
 //	glBindVertexArray(0);
 //}
 
@@ -143,26 +143,26 @@ void Mesh::InitModel(const objl::Mesh& model)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[INDEX_VB]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.Indices.size() * sizeof(model.Indices[0]), &model.Indices[0], GL_STATIC_DRAW);
 	
-	glBindVertexArray(0); // unbind our VAO
+	glBindVertexArray(0);
 }
 
 void Mesh::InitModel(const IndexedModel& model)
 {
 	drawCount = model.indices.size();
 
-	glGenVertexArrays(1, &vertexArrayObject); //generate a vertex array and store it in the VAO
-	glBindVertexArray(vertexArrayObject); //bind the VAO (any operation that works on a VAO will work on our bound VAO - binding)
+	glGenVertexArrays(1, &vertexArrayObject);
+	glBindVertexArray(vertexArrayObject);
 
-	glGenBuffers(NUM_BUFFERS, vertexArrayBuffers); //generate our buffers based of our array of data/buffers - GLuint vertexArrayBuffers[NUM_BUFFERS];
+	glGenBuffers(NUM_BUFFERS, vertexArrayBuffers);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffers[POSITION_VERTEXBUFFER]); //tell opengl what type of data the buffer is (GL_ARRAY_BUFFER), and pass the data
-	glBufferData(GL_ARRAY_BUFFER, model.positions.size() * sizeof(model.positions[0]), &model.positions[0], GL_STATIC_DRAW); //move the data to the GPU - type of data, size of data, starting address (pointer) of data, where do we store the data on the GPU (determined by type)
+	glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffers[POSITION_VERTEXBUFFER]);
+	glBufferData(GL_ARRAY_BUFFER, model.positions.size() * sizeof(model.positions[0]), &model.positions[0], GL_STATIC_DRAW); 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffers[TEXCOORD_VB]); //tell opengl what type of data the buffer is (GL_ARRAY_BUFFER), and pass the data
-	// FIX: use texCoords.size() here (not positions.size()) so the texcoord buffer size matches the array
-	glBufferData(GL_ARRAY_BUFFER, model.texCoords.size() * sizeof(model.texCoords[0]), &model.texCoords[0], GL_STATIC_DRAW); //move the data to the GPU - type of data, size of data, starting address (pointer) of data, where do we store the data on the GPU
+	glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffers[TEXCOORD_VB]);
+	
+	glBufferData(GL_ARRAY_BUFFER, model.texCoords.size() * sizeof(model.texCoords[0]), &model.texCoords[0], GL_STATIC_DRAW);
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
@@ -171,17 +171,16 @@ void Mesh::InitModel(const IndexedModel& model)
 	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[INDEX_VB]); //tell opengl what type of data the buffer is (GL_ARRAY_BUFFER), and pass the data
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indices.size() * sizeof(model.indices[0]), &model.indices[0], GL_STATIC_DRAW); //move the data to the GPU - type of data, size of data, starting address (pointer) of data, where do we store the data on the GPU
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexArrayBuffers[INDEX_VB]);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indices.size() * sizeof(model.indices[0]), &model.indices[0], GL_STATIC_DRAW);
 
-	glBindVertexArray(0); // unbind our VAO
+	glBindVertexArray(0);
 }
 
 void Mesh::Draw()
 {
-	//make sure this is efficient or im cooked
 	glBindVertexArray(vertexArrayObject);
-	// FIX: use glDrawElements for indexed geometry so indices (and their texcoords) are respected
+
 	glDrawElements(GL_TRIANGLES, drawCount, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }

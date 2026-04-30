@@ -1,5 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab1.vcxproj, Labs.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Display.cpp
   MainGame.cpp
 C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(705,25): warning C4018: '<': signed/unsigned mismatch
   (compiling source file 'MainGame.cpp')
@@ -13,19 +12,21 @@ C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(748,23): warning C4018: '<': si
 C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(1002,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MainGame.cpp')
   
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(59,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(123,44): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(173,52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(174,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(182,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(186,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(190,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(194,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(233,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(245,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(272,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(279,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(305,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(65,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(130,44): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(278,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(303,44): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(484,52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(485,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(500,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(504,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(508,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(512,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(536,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(548,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(574,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(581,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\aster\source\repos\GP2\Lab1\MainGame.cpp(606,21): warning C4018: '<': signed/unsigned mismatch
   main.cpp
 C:\Users\aster\source\repos\GP2\Lab1\objLoader.h(705,25): warning C4018: '<': signed/unsigned mismatch
   (compiling source file 'main.cpp')
