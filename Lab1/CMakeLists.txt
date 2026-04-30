@@ -37,6 +37,8 @@ target_link_libraries(Labs PRIVATE
 
 file(COPY Resources DESTINATION ${CMAKE_BINARY_DIR})
 
+target_link_options(Labs PRIVATE /IGNORE:4099)
+
 if (WIN32)
     target_link_options(Labs PRIVATE "/SUBSYSTEM:CONSOLE")
 endif()
